@@ -1,0 +1,8 @@
+pandas
+numpy
+scipy
+duckdb
+yfinance
+pydantic>=2
+pytest
+ruff

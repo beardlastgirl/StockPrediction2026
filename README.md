@@ -1,0 +1,3 @@
+﻿# StockPrediction2026
+
+Question: Do publicly dated world events produce abnormal S&P 500 returns...

@@ -1,0 +1,2 @@
+[console_scripts]
+eventstudy = eventstudy.__main__:main

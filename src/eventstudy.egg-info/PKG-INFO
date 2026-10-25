@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: eventstudy
+Version: 0.1.0
+Summary: Event study of S&P 500 reactions to dated events.
+Requires-Python: >=3.11
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: duckdb
+Requires-Dist: yfinance
+Requires-Dist: pydantic>=2
+Requires-Dist: pytest
+Requires-Dist: ruff
