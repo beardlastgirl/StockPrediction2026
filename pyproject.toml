@@ -1,0 +1,29 @@
+﻿[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eventstudy"
+version = "0.1.0"
+description = "Event study of S&P 500 reactions to dated events."
+requires-python = ">=3.11"
+dependencies = [
+    "pandas",
+    "numpy",
+    "scipy",
+    "duckdb",
+    "yfinance",
+    "pydantic>=2",
+    "pytest",
+    "ruff",
+]
+
+[project.scripts]
+eventstudy = "eventstudy.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
