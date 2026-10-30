@@ -19,3 +19,7 @@ RNG_SEED = 20261025
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 SEEDS_DIR.mkdir(parents=True, exist_ok=True)
+
+
+POLITICIAN_ANOMALIES_PATH = Path(r"D:\AI\StockPrediction\data\politician_anomalies.json")
+POLITICIAN_DB_PATH = DATA_DIR / "politician_eventstudy.duckdb"
