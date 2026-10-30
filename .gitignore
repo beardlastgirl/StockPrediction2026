@@ -10,3 +10,9 @@ data/*.parquet
 .env.*
 *.bak
 *.tmp
+
+# Runtime outputs
+reports/*.csv
+reports/*.json
+*.duckdb
+data/*.json

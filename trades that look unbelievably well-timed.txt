@@ -1,0 +1,54 @@
+If you're researching "trades that look unbelievably well-timed, regardless of whether wrongdoing was proven," here are some of the biggest examples frequently cited by watchdogs, journalists, and congressional-trading critics:
+
+1. Richard Burr and COVID-19
+
+One of the most famous cases involved Richard Burr, then-chairman of the Senate Intelligence Committee. After receiving congressional briefings about the emerging coronavirus threat, he sold between roughly $628,000 and $1.72 million in stocks on February 13, 2020, shortly before the pandemic-driven market crash. Federal investigations ultimately ended without charges.
+
+Why critics focused on it:
+
+Access to classified and high-level pandemic briefings.
+Large stock sales before the market collapse.
+Public reassurances contrasted with private warnings reported later.
+2. Kelly Loeffler and COVID-19
+
+Following a January 24, 2020 Senate coronavirus briefing, Kelly Loeffler and her husband reportedly sold between about $1.2 million and $3.1 million in stocks while also making purchases that benefited from increased remote work. No charges were filed.
+
+Why it attracted attention:
+
+Trades occurred shortly after a closed briefing.
+Subsequent purchases included companies positioned to benefit from lockdown-era behavior.
+3. David Perdue and Pandemic-Era Trades
+
+During the same period, David Perdue conducted numerous stock transactions, including purchases of DuPont, which produced personal protective equipment. Reporters noted the timing relative to congressional COVID briefings. Investigations ended without charges.
+
+4. Nancy Pelosi's Household and Visa
+
+In July 2024, Paul Pelosi sold 2,000 shares of Visa worth between roughly $500,000 and $1 million. About two months later, the DOJ sued Visa in an antitrust case, after which the stock declined. The timing generated substantial public scrutiny, although no evidence of insider trading has been established.
+
+5. NVIDIA and the CHIPS Act Debate
+
+Critics have repeatedly pointed to NVIDIA-related trades associated with the Pelosi household. Reports noted purchases of NVIDIA options before Congress approved major semiconductor-industry support legislation, leading to public backlash and accusations of an appearance of conflict, though no official finding of misconduct resulted.
+
+6. Tommy Tuberville and Defense Contractors
+
+Tommy Tuberville, a member of the Senate Armed Services Committee, has faced scrutiny over purchases of defense-related companies, including Qualcomm and other contractors that receive federal military business. Critics argue the overlap between committee responsibilities and trading activity creates conflict-of-interest concerns.
+
+7. Defense Stocks Before Geopolitical Escalations
+
+Multiple lawmakers have been highlighted for purchases of defense contractors such as Lockheed Martin and RTX before major military developments. Critics point to the timing; however, timing alone does not prove improper conduct.
+
+A useful pattern to search for
+
+Instead of searching a politician's name, search for:
+
+congress member bought stock before contract
+senator traded after briefing
+committee member traded sector they oversee
+STOCK Act timing investigation
+Capitol Trades unusual timing
+Quiver Quantitative congressional trading
+COVID briefing stock trades senators
+
+Those searches tend to uncover the strongest "that's a heck of a coincidence" stories.
+
+One important caveat: many of the most suspicious-looking cases generated investigations and headlines, but very few resulted in charges or findings of insider trading, largely because proving a trade was based on non-public information is extremely difficult.
