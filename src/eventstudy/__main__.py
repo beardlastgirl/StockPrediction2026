@@ -9,6 +9,10 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("fetch-prices", help="Fetch benchmark prices")
     subparsers.add_parser("migrate-legacy", help="Migrate legacy events")
     subparsers.add_parser("run-study", help="Run the event study")
+    subparsers.add_parser("pattern-detect", help="Detect event patterns")
+    pr = subparsers.add_parser("predict", help="Predict from event type")
+    pr.add_argument("--type", required=True, dest="etype")
+    pr.add_argument("--horizon", type=int, default=5)
     return parser
 
 
@@ -37,6 +41,21 @@ def main() -> None:
         summary = run_study()
         for row in summary:
             print(row)
+    elif args.command == "pattern-detect":
+        from eventstudy.db import get_connection
+        from eventstudy.patterns import compute_patterns, save_patterns
+
+        con = get_connection()
+        try:
+            pats = compute_patterns(con)
+        finally:
+            con.close()
+        print(f"patterns: {len(pats)}")
+        print(f"saved: {save_patterns(pats)}")
+    elif args.command == "predict":
+        from eventstudy.predict import predict_event
+
+        print(predict_event(args.etype, args.horizon))
     else:
         print(f"{args.command}: not implemented")
 
