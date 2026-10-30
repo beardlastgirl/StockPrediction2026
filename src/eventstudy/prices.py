@@ -1,11 +1,15 @@
 """Price fetching and storage."""
 from __future__ import annotations
 
+import warnings
+
 import pandas as pd
 import yfinance as yf
 
 from eventstudy.config import BENCHMARK_TICKER, DB_PATH
 from eventstudy.db import get_connection
+
+warnings.filterwarnings("ignore")
 
 
 def fetch_prices(ticker: str, start: str, end: str) -> pd.DataFrame:
@@ -61,3 +65,4 @@ def fetch_and_store(ticker=BENCHMARK_TICKER, start="2000-01-01", end=None, db_pa
         return store_prices(con, ticker, df)
     finally:
         con.close()
+

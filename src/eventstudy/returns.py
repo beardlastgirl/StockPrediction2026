@@ -17,9 +17,12 @@ def find_event_index(price_dates, event_date) -> int | None:
 
     if isinstance(event_date, str):
         event_date = dt.date.fromisoformat(event_date[:10])
+    if hasattr(event_date, "date"):
+        event_date = event_date.date()
     idx = None
     for i, d in enumerate(price_dates):
-        if d >= event_date:
+        dd = d.date() if hasattr(d, "date") else d
+        if dd >= event_date:
             idx = i
             break
     return idx

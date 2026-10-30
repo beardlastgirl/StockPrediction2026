@@ -25,6 +25,8 @@ def load_prices(con, ticker=BENCHMARK_TICKER) -> pd.DataFrame:
         [ticker],
     ).fetchdf()
     df = df.rename(columns={"price_date": "price_date"})
+    if "price_date" in df.columns:
+        df["price_date"] = pd.to_datetime(df["price_date"]).dt.date
     return df
 
 
