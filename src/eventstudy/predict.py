@@ -24,4 +24,7 @@ def predict_event(event_type: str, horizon: int = 5, patterns=None) -> dict:
         "direction": p["direction"],
         "expected_car": p["mean_car"],
         "n": p["n"],
+        "std_car": p.get("std_car"),
+        "p_value": p.get("p_value"),
+        "historical_average": True,
     }

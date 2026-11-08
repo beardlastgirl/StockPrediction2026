@@ -1,15 +1,12 @@
 """Price fetching and storage."""
 from __future__ import annotations
 
-import warnings
-
 import pandas as pd
 import yfinance as yf
 
 from eventstudy.config import BENCHMARK_TICKER, DB_PATH
 from eventstudy.db import get_connection
-
-warnings.filterwarnings("ignore")
+from eventstudy.returns import compute_daily_returns
 
 
 def fetch_prices(ticker: str, start: str, end: str) -> pd.DataFrame:
@@ -55,14 +52,38 @@ def store_prices(con, ticker: str, df: pd.DataFrame) -> int:
     return len(rows)
 
 
+def store_daily_returns(con, ticker: str, df: pd.DataFrame) -> int:
+    if df.empty:
+        return 0
+    daily = compute_daily_returns(df)
+    rows = []
+    for _, r in daily.iterrows():
+        ret = r.get("ret")
+        if pd.isna(ret):
+            continue
+        rows.append((ticker, r["price_date"], float(ret)))
+    if not rows:
+        return 0
+    con.executemany(
+        "INSERT OR REPLACE INTO daily_returns VALUES (?,?,?)",
+        rows,
+    )
+    return len(rows)
+
+
 def fetch_and_store(ticker=BENCHMARK_TICKER, start="2000-01-01", end=None, db_path=DB_PATH) -> int:
     import datetime as dt
 
+    from eventstudy.config import ensure_dirs
+
+    ensure_dirs()
     end = end or dt.date.today().isoformat()
     df = fetch_prices(ticker, start, end)
     con = get_connection(db_path)
     try:
-        return store_prices(con, ticker, df)
+        n = store_prices(con, ticker, df)
+        store_daily_returns(con, ticker, df)
+        return n
     finally:
         con.close()
 

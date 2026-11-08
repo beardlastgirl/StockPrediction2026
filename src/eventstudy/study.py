@@ -2,12 +2,20 @@
 from __future__ import annotations
 
 import csv
+import math
 
 import pandas as pd
 
 from eventstudy.config import BENCHMARK_TICKER, DB_PATH, REPORTS_DIR
 from eventstudy.db import get_connection
 from eventstudy.stats import event_cars, summarize
+
+
+def _is_finite(value) -> bool:
+    try:
+        return math.isfinite(float(value))
+    except (TypeError, ValueError):
+        return False
 
 
 def load_events(con) -> list[dict]:
@@ -37,14 +45,22 @@ def run_study(db_path=DB_PATH, ticker=BENCHMARK_TICKER, report_path=None) -> lis
         prices = load_prices(con, ticker)
         rows = event_cars(prices, events)
         summary = summarize(rows)
+        summary_by_horizon = {r["horizon"]: r for r in summary}
         # store
         con.execute("DELETE FROM study_results")
         for r in rows:
             if r["car"] is None:
                 continue
+            agg = summary_by_horizon.get(r["horizon"], {})
+            t_stat = agg.get("t_stat")
+            p_value = agg.get("p_value")
+            if t_stat is not None and not _is_finite(t_stat):
+                t_stat = None
+            if p_value is not None and not _is_finite(p_value):
+                p_value = None
             con.execute(
-                "INSERT INTO study_results VALUES (?,?,?,NULL,NULL)",
-                [r["event_id"], r["horizon"], float(r["car"])],
+                "INSERT INTO study_results VALUES (?,?,?,?,?)",
+                [r["event_id"], r["horizon"], float(r["car"]), t_stat, p_value],
             )
         report_path = report_path or (REPORTS_DIR / "study_results.csv")
         REPORTS_DIR.mkdir(parents=True, exist_ok=True)

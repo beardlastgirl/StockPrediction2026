@@ -29,12 +29,12 @@ def load_events(path=None):
         events.append(Event(
             event_id=f"POL-{fnd.get('type')}-{fnd.get('ticker')}-{i}",
             event_date=d,
-            event_type="Politician Trade",
+            event_type=f"Politician {str(fnd.get('type', 'trade')).replace('_', ' ').title()}",
+            notes=f"{fnd.get('type')}: {fnd.get('ticker')} ({fnd.get('trade_count', 0)} trades)",
             event_description=f"{fnd.get('type')} on {fnd.get('ticker')} by {fnd.get('trade_count',0)} trades",
             geographic_scope="national",
             severity_rating=5,
             sector_impact=fnd.get("ticker"),
-            notes=fnd.get("type"),
         ))
     return events
 

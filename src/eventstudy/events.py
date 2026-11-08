@@ -7,7 +7,12 @@ from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
 
-from eventstudy.taxonomy import normalize_scope, normalize_severity
+from eventstudy.taxonomy import (
+    normalize_event_id,
+    normalize_event_type,
+    normalize_scope,
+    normalize_severity,
+)
 
 
 @dataclass
@@ -41,13 +46,19 @@ def parse_date(value) -> str:
 
 
 def normalize_event(raw: dict) -> Event:
+    severity = raw.get("severity_rating")
+    if severity is None:
+        severity = raw.get("severity")
+    scope = raw.get("geographic_scope")
+    if scope is None:
+        scope = raw.get("scope")
     return Event(
-        event_id=str(raw.get("event_id") or raw.get("id")),
+        event_id=normalize_event_id(raw),
         event_date=parse_date(raw.get("date") or raw.get("event_date")),
-        event_type=raw.get("event_type") or raw.get("type"),
+        event_type=normalize_event_type(raw.get("event_type") or raw.get("type")),
         event_description=raw.get("event_description") or raw.get("description"),
-        geographic_scope=raw.get("geographic_scope") or raw.get("scope"),
-        severity_rating=raw.get("severity_rating") or raw.get("severity"),
+        geographic_scope=scope,
+        severity_rating=severity,
         sector_impact=raw.get("sector_impact"),
         notes=raw.get("notes"),
     )
